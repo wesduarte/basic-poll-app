@@ -1,0 +1,30 @@
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<style>
+	h1{ text-align:center; color:white; }
+
+	#myheader{ background-color:dodgerblue; color:white; }
+	</style>
+</head>
+
+<div class="container">
+  	<div class="jumbotron" id="myheader">
+    	<h1>My Poll Aplication</h1>
+    	<p></p> 
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-12 col-sm-4">
+			{% if latest_question_list %}
+			<ul>
+			{% for question in latest_question_list %}
+			<li><a href="{% url 'polls:detail' question.id %}"> {{ question.question_text }}</a></li>
+			{% endfor %}
+			</ul>
+			{% else %}
+				<p>No polls are available.</p>
+			{% endif %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<head>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<style>
+	#myheader{ background-color:dodgerblue; color:white;}
+	#line1{ background-color:lightslategrey; color:white; border: 2px solid white; }
+	#line2{ background-color:lightsteelblue; color:white; border: 2px solid;}
+	</style>
+</head>
+
+<div class="container">
+  	<div class="jumbotron" id="myheader">
+    	<h1>My Poll Aplication</h1>
+    	<p></p> 
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-12 col-sm-8">
+
+			<h1>{{ question.question_text }}</h1>
+
+			<ul>
+			{% for choice in question.choice_set.all %}
+				<li id="{% cycle 'line1' 'line2' %}">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize}}</li>
+			{% endfor %}
+			</ul>
+
+			<a href="{% url 'polls:detail' question.id %}"><form type="button" class="btn btn-warning">Vote again?</form></a>
+
+		</div>
+	</div>
+</div>
