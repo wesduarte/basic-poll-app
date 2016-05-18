@@ -58,3 +58,11 @@ def vote(request, question_id):
 		selected_choice.votes += 1
 		selected_choice.save()
 		return HttpResponseRedirect(reverse('polls:results', args = (question.id,)))
+
+def add_question(request):
+	latest_question_list = Question.objects.order_by('-pub_date')[:5]
+	#question = get_object_or_404(Question, pk = question_id)
+	context = {
+		'latest_question_list' : latest_question_list,
+	}
+	return render(request, 'polls/add_question.html', context)
